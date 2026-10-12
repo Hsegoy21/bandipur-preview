@@ -669,20 +669,29 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .booking-founder img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; flex-shrink: 0; }
 
 /* ---------- Single tour ---------- */
+/* Facts wrap to as many columns as fit; the 1px gaps over the line colour
+   draw the dividers, so any number of facts lays out cleanly. */
 .tour-facts {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: -48px 0 56px; position: relative; z-index: 4;
-  background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow-lift);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px;
+  margin: -48px 0 56px; position: relative; z-index: 4; overflow: hidden;
+  background: var(--line); border-radius: var(--radius); box-shadow: var(--shadow-lift);
 }
-.tour-facts > div { padding: 22px 26px; }
-.tour-facts > div + div { border-left: 1px solid var(--line); }
+.tour-facts > div { padding: 22px 26px; background: var(--surface); }
 .tour-facts dt { display: flex; align-items: center; gap: 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 6px; }
 .tour-facts dt .icon { width: 16px; height: 16px; color: var(--brand-forest); }
 .tour-facts dd { margin: 0; font-family: var(--font-head); font-weight: 700; font-size: var(--step-1); }
 @media (max-width: 860px) {
   .tour-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: -36px; }
-  .tour-facts > div:nth-child(3) { border-left: 0; }
-  .tour-facts > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .tour-facts > div { padding: 18px 20px; }
 }
+
+.itinerary-stats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.itinerary-stats li {
+  padding: 3px 10px; border-radius: 999px; font-size: 12.5px; line-height: 1.5;
+  background: var(--brand-cream); color: var(--ink-muted); font-variant-numeric: tabular-nums;
+}
+.itinerary-stats .stat--ride { background: var(--brand-forest); color: var(--white); font-weight: 600; }
+.itinerary-stats .stat--high { background: rgba(222, 138, 52, 0.18); color: var(--accent-ink); font-weight: 600; }
 
 .tour-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(2rem, 1rem + 4vw, 5rem); align-items: start; padding-bottom: var(--space-section); }
 @media (max-width: 900px) { .tour-layout { grid-template-columns: 1fr; } }
